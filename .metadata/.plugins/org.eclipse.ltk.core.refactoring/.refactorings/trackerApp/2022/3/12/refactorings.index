@@ -1,0 +1,7 @@
+1647462759849	Encapsulate field 'licenseVerified'
+1647462948635	Encapsulate field 'licensePresent'
+1647462962984	Encapsulate field 'appReviewed'
+1647462983594	Encapsulate field 'quotePresent'
+1647463057848	Encapsulate field 'agentComplete'
+1647463071482	Encapsulate field 'reviewComplete'
+1647463412191	Encapsulate field 'type'

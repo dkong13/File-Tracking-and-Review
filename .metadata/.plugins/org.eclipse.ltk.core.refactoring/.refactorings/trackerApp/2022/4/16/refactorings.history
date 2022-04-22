@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;trackerApp/src/main/webapp/WEB-INF/filterByDate.jsp&apos; to &apos;previousSales.jsp&apos;" description="Rename resource &apos;filterByDate.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/WEB-INF/filterByDate.jsp" name="previousSales.jsp" stamp="1649809999395" updateReferences="true"/>
+</session>

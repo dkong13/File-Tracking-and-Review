@@ -1,0 +1,10 @@
+INDEX VERSION 1.4+C:\Users\utahs\Desktop\DK_Projects\Walker Insurance Tracker\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+45875745.index
+1898851750.index
+3015316880.index
+3412428235.index
+1505695008.index
+1652442733.index
+1505695008.index
+3238117077.index
+3757210769.index
