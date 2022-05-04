@@ -2,6 +2,7 @@ package com.tracker.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -90,7 +91,7 @@ public class HomeController {
 		if(session.getAttribute("loggedInUser")!=null) {
 			User user = (User)session.getAttribute("loggedInUser");
 			Long userId = user.getId();
-			model.addAttribute("saleFiles", saleFileServ.allSaleFilesByUserDateDesc(userId));
+			model.addAttribute("saleFiles", saleFileServ.tenMostRecent(userId));
 			return "dashboard.jsp";
 		}
 		else {
@@ -125,7 +126,7 @@ public class HomeController {
 		if(session.getAttribute("loggedInUser")!=null) {
 			User user = (User)session.getAttribute("loggedInUser");
 			Long userId = user.getId();
-			model.addAttribute("saleFiles", saleFileServ.allSaleFilesByUserDateDesc(userId));
+			model.addAttribute("saleFiles", saleFileServ.twofiftyMostRecent(userId));
 			return "previousSales.jsp";
 		}
 		else {
@@ -159,7 +160,13 @@ public class HomeController {
 			Date d2 = filterDates.getD2();
 			Long userId = filterDates.getId();
 			model.addAttribute("users", userServ.allUsers());
-			model.addAttribute("saleFiles", saleFileServ.findBetweenDates(d1, d2, userId));
+			List<SaleFile> saleFiles = saleFileServ.findBetweenDates(d1, d2, userId);
+			model.addAttribute("saleFiles", saleFiles);
+			int total=0;
+			for(SaleFile sale : saleFiles) {
+				total += sale.getSaleCount();
+			}
+			model.addAttribute("weekTotal", total);
 			return "salesByUser.jsp";
 		}
 		else {

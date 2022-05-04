@@ -29,7 +29,7 @@
 				<p>Filter by date: <form:input type="text" placeholder="MM/DD/YYYY" path="d1" /> to 
 				<form:input type="text" placeholder="MM/DD/YYYY" path="d2" /> 
 				<form:select path="id">
-					<option value="null">Choose Office: </option>
+					<option value="${user.id}">Choose Office: ${user.userName}</option>
 					<c:forEach items="${users}" var="user">
 						<option value="${user.id}">${user.userName}</option>
 					</c:forEach>
@@ -37,7 +37,8 @@
 				<input type="submit" value="Submit"> <a href="/previousSales">Kinston Office Sales</a></p>
 				
 			</form:form>
-			<table class="table table-bordered">
+			<h3>Total Sales: ${weekTotal}</h3>
+			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<td>Name</td>
@@ -46,6 +47,7 @@
 						<td>Premium</td>
 						<td>Sale Date</td>
 						<td>Sale Count</td>
+						<td>New to Agency?</td>
 						<td>App Signed?</td>
 						<td>Drivers License/<br />Flood Form
 						</td>
@@ -57,18 +59,19 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${saleFiles}" var="sale">
-						<tr>
+						<tr class="align-middle">
 							<td><a href="/sale/${sale.id}">${sale.name}</a></td>
 							<td>${sale.type}</td>
 							<td>${sale.company}</td>
 							<td>$${sale.premium}</td>
 							<td><fmt:formatDate pattern = "MM/dd/yyyy" value = "${sale.saleDate}" /></td>
 							<td>${sale.saleCount}</td>
-							<td>${sale.signedApp}</td>
-							<td>${sale.driverLicense}</td>
-							<td>${sale.lifeQuote}</td>
-							<td>${sale.scanned}</td>
-							<td>${sale.comments}</td>
+							<td>${sale.newToAgency==true ? "Yes" : "No"}</td>
+							<td ${sale.signedApp==true ? "class='table-success'" : "class='table-danger'"}>${sale.signedApp==true ? "Yes" : "No"}</td>
+							<td ${sale.driverLicense==true ? "class='table-success'" : "class='table-danger'"}>${sale.driverLicense==true ? "Yes" : "No"}</td>
+							<td ${sale.lifeQuote==true ? "class='table-success'" : "class='table-danger'"}>${sale.lifeQuote==true ? "Yes" : "No"}</td>
+							<td ${sale.scanned==true ? "class='table-success'" : "class='table-danger'"}>${sale.scanned==true ? "Yes" : "No"}</td>
+							<td>${sale.comments} <br /><span class="lightText">Office Agent: ${sale.officeAgent}</span></td>
 						</tr>
 					</c:forEach>
 				</tbody>

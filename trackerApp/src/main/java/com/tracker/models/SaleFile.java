@@ -24,6 +24,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="saleFile")
 public class SaleFile {
 	
+	// new to agency section
+	// which agent in office sold policy
+	// need to get total for date filter
+	// change true/false to yes/no
+	
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -69,6 +75,10 @@ public class SaleFile {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+    
+    private boolean newToAgency;
+    
+    private String officeAgent;
     
     public SaleFile() {
         
@@ -201,6 +211,22 @@ public class SaleFile {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public boolean isNewToAgency() {
+		return newToAgency;
+	}
+
+	public void setNewToAgency(boolean newToAgency) {
+		this.newToAgency = newToAgency;
+	}
+
+	public String getOfficeAgent() {
+		return officeAgent;
+	}
+
+	public void setOfficeAgent(String officeAgent) {
+		this.officeAgent = officeAgent;
+	}
+
 	@PrePersist
     protected void onCreate(){
         this.createdAt = new Date();

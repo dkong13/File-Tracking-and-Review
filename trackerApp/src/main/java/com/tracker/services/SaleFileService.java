@@ -28,6 +28,24 @@ public class SaleFileService {
 		return saleFileRepo.findAllByUserDateDesc(id);
 	}
 	
+	public List<SaleFile> tenMostRecent(Long id){
+		if(saleFileRepo.findAllByUserDateDesc(id).size()<10) {
+			return saleFileRepo.findAllByUserDateDesc(id);
+		}
+		else {
+			return saleFileRepo.findAllByUserDateDesc(id).subList(0,10);
+		}
+	}
+	
+	public List<SaleFile> twofiftyMostRecent(Long id){
+		if(saleFileRepo.findAllByUserDateDesc(id).size()<250) {
+			return saleFileRepo.findAllByUserDateDesc(id);
+		}
+		else {
+			return saleFileRepo.findAllByUserDateDesc(id).subList(0,250);
+		}
+	}
+	
 	public SaleFile findById(Long id) {
 		return saleFileRepo.findById(id).orElse(null);
 	}

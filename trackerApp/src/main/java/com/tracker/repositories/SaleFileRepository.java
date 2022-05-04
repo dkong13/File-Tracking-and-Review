@@ -26,7 +26,7 @@ public interface SaleFileRepository extends CrudRepository<SaleFile, Long> {
 	List<SaleFile> findAllBetweenDates(Date d1, Date d2, Long id);
 	
 	// Files needing to be reviewed
-	@Query(value="SELECT * FROM sale_file WHERE review_complete=false ORDER BY sale_date DESC", nativeQuery=true)
+	@Query(value="SELECT * FROM sale_file WHERE review_complete=false ORDER BY user_id, sale_date DESC", nativeQuery=true)
 	List<SaleFile> needsToBeReviewed();
 	
 }

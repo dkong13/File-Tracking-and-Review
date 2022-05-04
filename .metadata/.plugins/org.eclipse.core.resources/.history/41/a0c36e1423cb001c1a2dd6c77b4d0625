@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+
+.wrapper{
+	padding-right: 2%;
+	padding-left: 2%;
+}
+
+.loginBody{
+	display: flex;
+	justify-content: space-between;
+	margin-left: 28%;
+	margin-right: 28%;
+}
+
+.title{
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	padding: 15px;
+	text-align: center;
+}
+
+.register, .login{
+	margin: 15px;
+}
+
+.smallLightText{
+	font-weight: lighter;
+	font-size: small;
+}
+
+.lightText{
+	font-weight: lighter;
+}

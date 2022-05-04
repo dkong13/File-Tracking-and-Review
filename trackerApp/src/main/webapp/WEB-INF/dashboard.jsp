@@ -22,10 +22,12 @@
 		<div class="header">
 			<a href="/logout">Logout</a>
 			<h1>Hello ${loggedInUser.userName}! Here is your Dashboard</h1>
-			<c:if test="${loggedInUser.userName=='Kinston'}">
-				<h4><a href="/adminSalesFilter">Sales by Office</a></h4>
-				<h5><a href="/fileReviews">Review Files Here</a></h5>
-			</c:if>
+				<div class="admin-links">
+					<c:if test="${loggedInUser.userName=='Kinston'}">
+						<h4><a href="/adminSalesFilter">Sales by Office</a>  ||</h4>
+						<h4><a href="/fileReviews" class="review-link">Review Files Here</a></h4>
+					</c:if>
+				</div>
 		</div>
 		<div class="body">
 			<div class="newSale">
@@ -36,9 +38,10 @@
 							<td>Name</td>
 							<td>Policy Type</td>
 							<td>Company</td>
-							<td>Premium</td>
-							<td>Sale Date</td>
+							<td>Premium <br /><span class="smallLightText">(Round to nearest dollar)</span></td>
+							<td>Sale Date <br /><span class="smallLightText">(MM/DD/YYYY)</span></td>
 							<td>Sale Count</td>
+							<td>New to Agency?</td>
 							<td>App Signed?</td>
 							<td>Drivers License/<br/>Flood Form</td>
 							<td>Life Quote</td>
@@ -56,6 +59,10 @@
 								<td><form:input path="premium" class="form-control form-control-sm"/><br /><form:errors path="premium" class="text-danger"/></td>
 								<td><form:input path="saleDate" class="form-control form-control-sm" placeholder="MM/DD/YYYY"/><br /><form:errors path="saleDate" class="text-danger"/></td>
 								<td><form:input path="saleCount" class="form-control form-control-sm"/><br /><form:errors path="saleCount" class="text-danger"/></td>
+								<td><form:select path="newToAgency">
+									<option value="false">No</option>
+									<option value="true">Yes</option>
+								</form:select></td>
 								<td><form:select path="signedApp">
 									<option value="false">No</option>
 									<option value="true">Yes</option>
@@ -72,8 +79,11 @@
 									<option value="false">No</option>
 									<option value="true">Yes</option>
 								</form:select></td>
-								<td><form:input path="comments"/></td>
-								<form:input path="user" type="hidden" value="${loggedInUser.id}"/>
+								<td><form:input path="comments"/> <br />
+									<form:label path="officeAgent">Office Agent:</form:label><br />
+									<form:input path="officeAgent" class="form-control form-control-sm" />
+								</td>
+									<form:input path="user" type="hidden" value="${loggedInUser.id}"/>
 								<td><input type="submit" value="Save"></td>
 							</form:form>
 						</tr>
@@ -83,7 +93,7 @@
 			<div class="sales">
 				<a href="/previousSales">Previous Sales</a>
 				<h3>These are your recent sales:</h3>
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<td>Name</td>
@@ -92,6 +102,7 @@
 							<td>Premium</td>
 							<td>Sale Date</td>
 							<td>Sale Count</td>
+							<td>New to Agency?</td>
 							<td>App Signed?</td>
 							<td>Drivers License/<br/>Flood Form</td>
 							<td>Life Quote</td>
@@ -101,18 +112,19 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${saleFiles}" var="sale">
-							<tr>
+							<tr class="align-middle">
 								<td><a href="/sale/${sale.id}">${sale.name}</a></td>
 								<td>${sale.type}</td>
 								<td>${sale.company}</td>
 								<td>$${sale.premium}</td>
 								<td><fmt:formatDate pattern = "MM/dd/yyyy" value = "${sale.saleDate}" /></td>
 								<td>${sale.saleCount}</td>
-								<td>${sale.signedApp}</td>
-								<td>${sale.driverLicense}</td>
-								<td>${sale.lifeQuote}</td>
-								<td>${sale.scanned}</td>
-								<td>${sale.comments}</td>
+								<td>${sale.newToAgency==true ? "Yes" : "No"}</td>
+								<td ${sale.signedApp==true ? "class='table-success'" : "class='table-danger'"}>${sale.signedApp==true ? "Yes" : "No"}</td>
+								<td ${sale.driverLicense==true ? "class='table-success'" : "class='table-danger'"}>${sale.driverLicense==true ? "Yes" : "No"}</td>
+								<td ${sale.lifeQuote==true ? "class='table-success'" : "class='table-danger'"}>${sale.lifeQuote==true ? "Yes" : "No"}</td>
+								<td ${sale.scanned==true ? "class='table-success'" : "class='table-danger'"}>${sale.scanned==true ? "Yes" : "No"}</td>
+								<td>${sale.comments}<br /><span class="lightText">Office Agent: ${sale.officeAgent}</span></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -13,9 +13,43 @@
 }
 
 .title{
-	margin-left: 30%;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	padding: 15px;
+	justify-content: center;
+}
+
+.title-text{
+	margin:20px;
+	padding-top: 20px;
 }
 
 .register, .login{
 	margin: 15px;
 }
+
+.smallLightText{
+	font-weight: lighter;
+	font-size: small;
+}
+
+.lightText{
+	font-weight: lighter;
+}
+
+.admin-links{
+	display: flex;
+	padding: 5px;
+}
+
+.review-link{
+	padding-left: 11px;
+	padding-top: 10px;
+}
+
+
+
+
+

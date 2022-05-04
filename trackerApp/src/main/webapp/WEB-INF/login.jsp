@@ -21,7 +21,7 @@
 <body>
 	<div class="wrapper">
 		<div class="title">
-			<h1> Sales Tracker and File Reviews</h1>
+			<img src="img/newlogo2022-edit.jpg" alt="Walker Logo" height="100" /><h1 class="title-text"> Sales Tracker and File Reviews</h1>
 		</div>
 		<div class="body">
 			<div class="loginBody">

@@ -34,6 +34,7 @@
 							<td>Premium</td>
 							<td>Sale Date</td>
 							<td>Sale Count</td>
+							<td>New to Agency?</td>
 							<td>App Signed?</td>
 							<td>Drivers License/<br/>Flood Form</td>
 							<td>Life Quote</td>
@@ -51,23 +52,34 @@
 								<td><form:input path="premium" value="${sale.premium}" class="form-control form-control-sm"/><br /><form:errors path="premium" class="text-danger"/></td>
 								<td><form:input path="saleDate" value="${saleDate}" class="form-control form-control-sm" /><br /><form:errors path="saleDate" class="text-danger"/></td>
 								<td><form:input path="saleCount" value="${sale.saleCount}" class="form-control form-control-sm"/><br /><form:errors path="saleCount" class="text-danger"/></td>
+								<td><form:select path="newToAgency">
+									<option value="${sale.newToAgency}">${sale.newToAgency==true ? "Yes" : "No"}</option>
+									<option value="true">Yes</option>
+									<option value="false">No</option>
+								</form:select></td>
 								<td><form:select path="signedApp">
+									<option value="${sale.signedApp}">${sale.signedApp==true ? "Yes" : "No"}</option>
 									<option value="true">Yes</option>
 									<option value="false">No</option>
 								</form:select></td>
 								<td><form:select path="driverLicense">
+									<option value="${sale.driverLicense}">${sale.driverLicense==true ? "Yes" : "No"}</option>
 									<option value="true">Yes</option>
 									<option value="false">No</option>
 								</form:select></td>
 								<td><form:select path="lifeQuote">
+									<option value="${sale.lifeQuote}">${sale.lifeQuote==true ? "Yes" : "No"}</option>
 									<option value="true">Yes</option>
 									<option value="false">No</option>
 								</form:select></td>
 								<td><form:select path="scanned">
+									<option value="${sale.scanned}">${sale.scanned==true ? "Yes" : "No"}</option>
 									<option value="true">Yes</option>
 									<option value="false">No</option>
 								</form:select></td>
-								<td><form:input path="comments" value="${sale.comments}"/><form:errors path="user" class="text-danger"/></td>
+								<td><form:input path="comments" value="${sale.comments}"/><form:errors path="user" class="text-danger"/><br />
+									<form:label path="officeAgent">Office Agent:</form:label><br />
+									<form:input path="officeAgent" value="${sale.officeAgent}" class="form-control form-control-sm" /></td>
 								<form:input path="user" type="hidden" value="${sale.user.id}"/>
 								<td><input type="submit" value="Save"><a href="/sale/${sale.id}/delete">Delete</a></td>
 							</form:form>

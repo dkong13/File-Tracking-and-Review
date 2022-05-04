@@ -26,7 +26,7 @@
 		</div>
 		<div class="body">
 			<div class="reviewList">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<td>Name</td>
@@ -47,7 +47,7 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${saleFiles}" var="sale">
-							<tr>
+							<tr class="align-middle">
 								<td><a href="/sale/${sale.id}">${sale.name}</a></td>
 								<td>${sale.type}</td>
 								<td>${sale.company}</td>
@@ -55,10 +55,10 @@
 								<td><fmt:formatDate pattern="MM/dd/yyyy"
 										value="${sale.saleDate}" /></td>
 								<%-- <td>${sale.saleCount}</td> --%>
-								<td>${sale.signedApp}</td>
-								<td>${sale.driverLicense}</td>
-								<td>${sale.lifeQuote}</td>
-								<td>${sale.scanned}</td>
+								<td ${sale.signedApp==true ? "class='table-success'" : "class='table-danger'"}>${sale.signedApp==true ? "Yes" : "No"}</td>
+								<td ${sale.driverLicense==true ? "class='table-success'" : "class='table-danger'"}>${sale.driverLicense==true ? "Yes" : "No"}</td>
+								<td ${sale.lifeQuote==true ? "class='table-success'" : "class='table-danger'"}>${sale.lifeQuote==true ? "Yes" : "No"}</td>
+								<td ${sale.scanned==true ? "class='table-success'" : "class='table-danger'"}>${sale.scanned==true ? "Yes" : "No"}</td>
 								<td>${sale.comments}</td>
 								<td><a href="/sale/${sale.id}/review">Review</a></td>
 							</tr>
